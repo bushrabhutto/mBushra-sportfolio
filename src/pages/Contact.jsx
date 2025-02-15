@@ -1,70 +1,67 @@
-import React from "react";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
+import { useState } from "react";
 
-export default function ContactPage() {
+export default function Contact() {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted", formData);
+    setSubmitted(true);
+  };
+
   return (
-    <div className="bg-gray-900 min-h-screen flex items-center justify-center">
-      <div className="text-center text-white">
-        <h1 className="text-4xl font-bold mb-4">Contact Me</h1>
-        <p className="mb-6 text-lg">
-          I am very passionate about working on interactive and dynamic mobile and web applications. Let’s collaborate to create something amazing!
-        </p>
-
-        <div className="flex justify-center space-x-4 mt-6">
-          <a
-            href="https://wa.me/923402563206"
-            className="text-green-500 hover:text-white hover:scale-110 transition duration-300"
-            aria-label="WhatsApp"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaWhatsapp className="text-3xl" />
-          </a>
-          <a
-            href="mailto:ghous.shah91@gmail.com"
-            className="text-red-500 hover:text-white hover:scale-110 transition duration-300"
-            aria-label="Email"
-          >
-            <SiGmail className="text-3xl" />
-          </a>
-          <a
-            href="https://github.com"
-            className="text-gray-700 hover:text-white hover:scale-110 transition duration-300"
-            aria-label="GitHub"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithub className="text-3xl" />
-          </a>
-          <a
-            href="https://linkedin.com"
-            className="text-blue-500 hover:text-white hover:scale-110 transition duration-300"
-            aria-label="LinkedIn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin className="text-3xl" />
-          </a>
-        </div>
-
-        <div className="mt-10">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-12 w-12 mx-auto text-purple-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M16 12h6m-6 0a4 4 0 11-8 0 4 4 0 018 0zm2-6H6m6 0a4 4 0 110 8 4 4 0 010-8z"
+    <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-xl font-semibold mb-4">Contact Me</h2>
+      {submitted ? (
+        <p className="text-green-600">Thank you for reaching out! I'll get back to you soon.</p>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
             />
-          </svg>
-        </div>
-      </div>
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">Message</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+          >
+            Send Message
+          </button>
+        </form>
+      )}
     </div>
   );
 }
