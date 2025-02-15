@@ -6,7 +6,7 @@ import olx from "../assets/olx.png";
 import searchFood from "../assets/searchFood.png";
 import moviesearch from "../assets/moviesearch.png";
 import productfilter from "../assets/productfilter.png";
-import addtoCart from "../assets/addToCart.png";
+// import addtoCart from "../assets/addToCart.png";
 import calculator from "../assets/calculator.png";
 
 const Work = () => {
@@ -70,7 +70,7 @@ const Work = () => {
     {
       projectname: "Add To Cart",
       description: "I implemented an Add To Cart feature using vanilla JavaScript.",
-      image: addtoCart,
+      // image: addtoCart,
       repoLink: "https://github.com/bushrabhutto/addToCart",
       button: "https://bushrabhutto.github.io/addToCart/",
     },
